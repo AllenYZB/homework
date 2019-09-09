@@ -1,0 +1,54 @@
+% !Mode:: "TeX:UTF-8"
+% !TEX program  = xelatex
+
+% Hyperref
+    % hyperref
+    \usepackage{hyperref}
+        \hypersetup{
+            pdfauthor={Iydon},
+            pdfcreator={Microsoft® Word 2017},
+            pdfproducer={Microsoft® Word 2017},
+        }
+
+% Math
+    % symbols and environment
+    \usepackage{amsmath,amssymb}
+        \newcommand{\dd}{\mathrm{d}}
+        \newcommand{\diff}[2]{\frac{\dd #1}{\dd #2}}
+        \newcommand{\tdiff}[2]{\tfrac{\dd #1}{\dd #2}}
+        \newcommand{\RR}{\mathbb{R}}
+        \newcommand{\vecw}{\symbf{w}}
+        \newcommand{\vecx}{\symbf{X}}
+        \newcommand{\vecy}{\symbf{Y}}
+        \newcommand{\logit}{\mathrm{logit}}
+    % font
+    \usepackage{unicode-math}
+        \unimathsetup{math-style=ISO, bold-style=ISO, mathrm=sym}
+        \setsansfont{FiraGO}[BoldFont=* SemiBold, Numbers=Monospaced]
+        \setmathfont{Fira Math Regular}
+
+% Header and Footer
+    % geometry
+    \usepackage{geometry}
+        \geometry{margin=1in}
+    % fancy header
+    \usepackage{fancyhdr}
+        \fancyhead[L]{}
+        \fancyhead[C]{Iydon Liang, 11711217}
+        \fancyhead[R]{}
+        \renewcommand{\headrulewidth}{0.4pt}
+        \pagestyle{fancy}
+
+% Miscellaneous
+    % reading font
+    \usepackage{ebgaramond}
+    % Chinese support only
+    \usepackage[scheme=plain]{ctex}
+    % lipsum
+    \usepackage{lipsum}
+    % \verbatim in \macro arguments
+    \usepackage{cprotect}
+    % references style
+    \usepackage{gbt7714}
+    % show label keys
+    % \usepackage{showkeys}
