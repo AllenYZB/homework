@@ -1,0 +1,128 @@
+\documentclass{zjureport}
+% =============================================
+% Part 1 Edit the info
+% =============================================
+
+\newcommand{\major}{信息与计算科学}
+\newcommand{\name}{梁钰栋}
+\newcommand{\stuid}{11711217}
+\newcommand{\newdate}{\today}
+\newcommand{\loc}{寝室}
+
+\newcommand{\course}{心理学}
+\newcommand{\tutor}{孙志凤}
+\newcommand{\grades}{\phantom{100}}
+\newcommand{\newtitle}{影响大学生玩游戏时长的因素}
+\newcommand{\exptype}{设计实验}
+\newcommand{\group}{None}
+
+\usepackage{multicol}
+\newenvironment{summary}[1]{\noindent\textbf{#1}}{\\[1cm]}
+
+\begin{document}
+% =============================================
+% Part 1 Main document
+% =============================================
+\thispagestyle{empty}
+\begin{figure}[h]
+  \begin{minipage}{0.6\linewidth}
+    \centerline{\includegraphics[width=\linewidth]{head}}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{.4\linewidth}
+    \raggedleft
+    \begin{tabular*}{.8\linewidth}{ll}
+      专业： & \underline\major   \\
+      姓名： & \underline\name    \\
+      学号： & \underline\stuid   \\
+      日期： & \underline\newdate \\
+      地点： & \underline\loc
+    \end{tabular*}
+  \end{minipage}
+\end{figure}
+
+\begin{table}[!htbp]
+  \centering
+  \begin{tabular*}{\linewidth}{llllll}
+    课程名称： & \underline{\course\phantom{\newtitle}} & 指导老师： & \underline{\tutor\phantom{\exptype}} & 成绩：       & \underline{\grades\phantom{\group}} \\
+    实验名称： & \underline{\newtitle\phantom{\course}} & 实验类型： & \underline{\exptype\phantom{\tutor}} & 同组学生姓名：& \underline{\group\phantom{\grades}}
+  \end{tabular*}
+\end{table}
+
+% =============================================
+% Part 2 Main document
+% =============================================
+
+\section{实验目的和要求}
+  大学生由于已经成年，在学校独立生活学习而不会过多受到父母的管教，因此常通过游戏来放松自己，同时义务教育中父母对子女游戏时长的管制，加上游戏吸引，大部分同学的消遣手段选择了游戏。随着与同学的相处增多，我发现常有同学沉迷游戏，花费在游戏的时长与金钱颇为可观，所以想借此机会研究影响游戏时长的影响因素，在适当的时机，以适当的方法，低投入高效地减少在游戏方面的消耗。
+  
+  该实验需要从定性与定量的角度分析，获得不同的影响因素再加以逻辑自洽，在客观、严谨的同时又不缺乏生动、通俗性。
+
+  \begin{quote}
+    抵制不良游戏，拒绝盗版游戏。\\
+    注意自我保护，谨防受骗上当。\\
+    适度游戏宜脑，沉迷游戏伤身。\\
+    合理安排时间，享受健康生活。
+  \end{quote}
+
+
+\section{实验内容和步骤}
+  \subsection{实验内容}
+    以问卷的形式收集数据，在问卷中将所有能考虑到的因素制作成问题，通过统计的算法找到影响的因子，去除无关的因子。由于数据形式多样，而且可能有缺失、离群值，所以先进行数据的数值化，再进行数据缺失处理与离群值分析，最后将数据进行规范化，就可以用抽样调查课程的各种算法进行数据的分析，得到初步的结论，再从数据上进行数据的测试，得到最后的结果。以最后的结果为参照，得出定性的结论，完成本次心理学实验。
+    
+    初步的问卷问题如下：
+
+    \begin{multicols}{2}
+        \begin{enumerate}
+          \item 您的性别
+          \item 您的年龄
+          \item 您的年级
+          \item 您所在院系或意向院系
+          \item 您每周大概玩多长时间游戏（整数，以小时计）
+          \item 您平时玩游戏的类型
+          \item 您玩游戏的原因是
+          \item 您是自己玩还是和朋友开黑
+          \item 玩游戏前有对玩游戏这件事进行计划吗
+          \item 玩游戏有固定的时间吗
+          \item 您会熬夜打游戏吗（熬夜指晚上12:00以后）
+          \item 在哪些情况下，您会熬夜打游戏
+          \item 您一般几点睡
+          \item 您熬夜是因为打游戏吗
+          \item 您觉得自己打游戏影响到自己的学习生活了吗
+          \item 您觉得自己打游戏有没有影响到他人的学习生活
+          \item 您觉得别人打游戏有没有影响到您的学习生活
+          \item 有因为自己或他人打游戏和周围的人发生过矛盾吗
+        \end{enumerate}
+    \end{multicols}
+
+  \subsection{实验步骤}
+    \begin{clause}
+      \item 做出最终的问卷，分发出去，得到反馈的结果。
+      \item 将数据进行数值化，进行数据缺失处理与离群值分析，最后将数据进行规范化。
+      \item 利用抽样调查课程的算法对数据进行分析，得到定量的结果，从而逻辑反推，定性分析。
+    \end{clause}
+
+
+\section{主要仪器设备}
+  计算机，R软件。
+
+
+\section{实验结果与分析}
+  实验尚未进行，无法得出定量与定性的结论，姑且使用参考文献，待的实验结果出来再做比对。
+
+  \subsection{参考文献结论}
+    \begin{summary}{Prior Analysis}
+      Firstly, we performed the prior analysis on data, in this section we determined the sample size $n_i$ for each grades such that the estimated average playtime is within an error bound $B$.
+    \end{summary}
+
+    \begin{summary}{Qualitative Analysis}
+      Secondly, we performed the qualitative analysis on data, in this section we first reset the value of some variables to make it meaningful for the aim to get the correlation matrix. From the pictures above we can clearly point out that whether playing MOBA games is the biggest factor affecting the playtime. Furthermore, we can also conclude that boy's playtime is much longer than girl's playtime.
+    \end{summary}
+
+    \begin{summary}{Qnantitative Analysis}
+      Last, we perform the quantitative analysis. In this section, we mainly analysis the value of playtime for each grades. We first calculate the mean value and the confidence interval, then we perform a Wilcoxon rank test for all four mean values of playtime for four grades, from which we can conclude that there are clearly difference between the average playtime  for the two pairs: grade 3 and grade 4, grade 1 and grade 4.
+    \end{summary}
+
+\end{document}
+
+你的设计详实且切合实际，给你的想法点赞。你应用到的调查法很难得到因果关系，不过可以为你后续的研究累计基本数据。这个想法很有意思，欢迎你进一步思考，如果你愿意可以作为本节课的期末研究哦~
