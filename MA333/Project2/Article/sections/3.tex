@@ -1,0 +1,72 @@
+\section{数据预处理}
+数据往往因缺乏统一标准与结构导致杂乱性，因对客观事物在数据库中存在两个以上的描述导致重复性，因信息模糊、随机与缺失导致不完整性。因此为增加模型性能，简化模型计算，我们需要对数据进行预处理。\cite{撇味大白菜2018机器学习笔记：特征工程与数据降维,刘明吉2000数据挖掘中的数据预处理}
+\subsection{数据清洗}
+数据清洗主要包括如下部分：
+\begin{enumerate}
+    \item\label{P:缺失值} 缺失值处理；
+    \item\label{P:噪声} 噪声数据处理；
+    \item\label{P:异常值} 异常值处理；
+    \item\label{P:脏数据} 脏数据处理；
+    \item\label{P:去重} 去重处理。
+\end{enumerate}
+
+根据数据集的探索我们可以得出，原数据不存在缺失值，并且结构完善与统一，无重复数据，所以我们只需要进行第~\ref{P:噪声}部分与第~\ref{P:异常值}部分的数据清洗即可。
+
+通过主观判断与可视化判断，数据虽然存在被随机误差予离群值，但是数据取值范围正常却数量远小于数据总量，所以本文并未对数据进行严格的噪声数据处理与异常值数据处理，这将补充到第~\ref{S:future-work}节的未来工作当中。
+
+
+\subsection{数据变换}
+数据变换一般包括如下部分\cite{撇味大白菜2018机器学习笔记：特征工程与数据降维}：
+\begin{enumerate}
+    \item 平滑：去掉数据中的噪音。
+    \item 聚集：为多粒度数据分析构造数据。
+    \item 数据泛化：用高层次概念代替低层次原始数据。
+    \item 规范化：将属性数据按比例缩放，使之落入一个特定区间。
+    \item 属性构造：构造新的属性并添加到属性集中。
+\end{enumerate}
+
+根据数据集的探索我们可以得出，原数据已经进行了数据泛化与规范化处理，所以本文并未对数据进行数据泛化、规范化等数据变换过程，这将补充到第~\ref{S:future-work}节的未来工作当中。
+
+
+\subsection{数据简化}
+数据简化，又称数据规约，指在尽可能保持数据原貌的前提下，最大限度地精简数据量。同时，用于数据简化的时间不应当超过之后在数据挖掘中节省的时间\cite{撇味大白菜2018机器学习笔记：特征工程与数据降维}。数据简化有以下三种常见方法 ：
+\begin{enumerate}
+    \item 维度规约；
+    \item 数量规约；
+    \item 数据压缩。
+\end{enumerate}
+
+本文主要是用维度规约，从高维特征空间向地位特征空间进行映射，即降维。一般来说，现实生活中所得到的数据具备共线性、稀疏性等特征，因此对数据进行降维有助于减少特征属性之间的个数，同时确保特征属性之间是相互独立的。降维主要有以下方法（均来自\verbbox[violet]{sklearn.decomposition}模块）\cite{scikit-learn,sklearn_api,DataAnalyst2019机器学习之sklearn中的降维算法,Cyrille2015sne}：
+
+\begin{itemize}
+    \item 主成分分析：
+        \begin{itemize}
+            \item \verbbox[violet]{PCA};
+            \item \verbbox[violet]{IncrementalPCA};
+            \item \verbbox[violet]{KernelPCA};
+            \item \verbbox[violet]{MiniBatchSparsePCA};
+            \item \verbbox[violet]{SparsePCA};
+            \item \verbbox[violet]{TruncatedSVD}.
+        \end{itemize}
+    \item 因子分析：
+        \begin{itemize}
+            \item \verbbox[violet]{FactorAnalysis}.
+        \end{itemize}
+    \item 独立成分分析：
+        \begin{itemize}
+            \item \verbbox[violet]{FastICA}.
+        \end{itemize}
+    \item 字典学习：
+        \begin{itemize}
+            \item \verbbox[violet]{DictionaryLearning};
+            \item \verbbox[violet]{MiniBatchDictionaryLearning}.
+        \end{itemize}
+    \item 高级矩阵分解：
+        \begin{itemize}
+            \item \verbbox[violet]{LatentDirichletAllocation};
+            \item \verbbox[violet]{NMF};
+            \item \verbbox[violet]{SparseCoder}.
+        \end{itemize}
+\end{itemize}
+
+本文主要采用\verbbox[violet]{PCA}与\verbbox[violet]{TruncatedSVD}，通过实际的计算发现，选取阈值为95\%以上的\verbbox[violet]{TruncatedSVD}降维方法所得的效果最好，即$R^2$相对较高。所以在接下来的构造回归模型中，我们采用该降维方法对数据进行处理。

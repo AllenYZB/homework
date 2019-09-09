@@ -1,0 +1,24 @@
+\section{结论}
+模型训练结果如下，且所有模型的训练时间不超过500\si{\milli\second}。
+\begin{enumerate}
+    \item \commandbox{day.csv}数据集中：
+        \begin{itemize}
+            \item 未注册用户预测最佳模型：\verbbox[violet]{GradientBoostingRegressor}；
+            \item 注册用户预测最佳模型：\verbbox[violet]{GradientBoostingRegressor}；
+            \item 总用户预测最佳模型：\verbbox[violet]{GradientBoostingRegressor}。
+        \end{itemize}
+
+    \item \commandbox{hour.csv}数据集中：
+        \begin{itemize}
+            \item 未注册用户预测最佳模型：\verbbox[violet]{BaggingRegressor}；
+            \item 注册用户预测最佳模型：\verbbox[violet]{ExtraTreesRegressor}；
+            \item 总用户预测最佳模型：\verbbox[violet]{ExtraTreesRegressor}。
+        \end{itemize}
+
+    \item 时间相关变量数据集中：
+        \begin{itemize}
+            \item 未注册用户预测最佳模型：\verbbox[violet]{GradientBoostingRegressor}；
+            \item 注册用户预测最佳模型：\verbbox[violet]{GaussianProcessRegressor}；
+            \item 总用户预测最佳模型：\verbbox[violet]{GaussianProcessRegressor}。
+        \end{itemize}
+\end{enumerate}

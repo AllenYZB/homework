@@ -1,0 +1,112 @@
+\section{回归模型的构造}
+\subsection{评价与误差函数}
+我们选择以下评价函数与误差函数来评定模型的优劣（均来自于\verbbox[violet]{sklearn.metrics}模块）：
+\begin{itemize}
+    \item 评价函数：
+        \begin{itemize}
+            \item \verbbox[violet]{explained_variance_score};
+            \item \verbbox[violet]{r2_score}.
+        \end{itemize}
+    \item 误差函数：
+        \begin{itemize}
+            \item \verbbox[violet]{max_error};
+            \item \verbbox[violet]{mean_absolute_error};
+            \item \verbbox[violet]{mean_squared_error};
+            \item \verbbox[violet]{mean_squared_log_error};
+            \item \verbbox[violet]{median_absolute_error}.
+        \end{itemize}
+\end{itemize}
+
+广泛地对模型进行评价，同时加上模型的训练时间与预测时间，多维度地评价模型的优劣。
+
+
+\subsection{回归模型的选择}
+广泛地训练模型，从而取效果最好的，因此我们采用以下的回归模型\cite{scikit-learn,sklearn_api}：
+\begin{itemize}
+    \item \verbbox[violet]{sklearn.ensemble}:
+        \begin{itemize}
+            \item \verbbox[violet]{AdaBoostRegressor};
+            \item \verbbox[violet]{BaggingRegressor};
+            \item \verbbox[violet]{ExtraTreesRegressor};
+            \item \verbbox[violet]{GradientBoostingRegressor};
+            \item \verbbox[violet]{IsolationForest}.
+        \end{itemize}
+    \item \verbbox[violet]{sklearn.gaussian_process}:
+        \begin{itemize}
+            \item \verbbox[violet]{GaussianProcessRegressor}.
+        \end{itemize}
+    \item \verbbox[violet]{sklearn.linear_model}:
+        \begin{itemize}
+            \item \verbbox[violet]{ElasticNetCV};
+            \item \verbbox[violet]{HuberRegressor};
+            \item \verbbox[violet]{LassoLarsCV};
+            \item \verbbox[violet]{LogisticRegression};
+            \item \verbbox[violet]{PassiveAggressiveRegressor};
+            \item \verbbox[violet]{RANSACRegressor};
+            \item \verbbox[violet]{RidgeCV};
+            \item \verbbox[violet]{SGDRegressor};
+            \item \verbbox[violet]{TheilSenRegressor}.
+        \end{itemize}
+    \item \verbbox[violet]{sklearn.neighbors}:
+        \begin{itemize}
+            \item \verbbox[violet]{KNeighborsRegressor};
+            \item \verbbox[violet]{RadiusNeighborsRegressor}.
+        \end{itemize}
+    \item \verbbox[violet]{sklearn.neural_network}:
+        \begin{itemize}
+            \item \verbbox[violet]{MLPRegressor}.
+        \end{itemize}
+\end{itemize}
+
+最后生成一个数据结构如下的结果：
+
+\tikz [font=\texttt\footnotesize,
+    grow=right, level 1/.style={sibling distance=3em,level distance=.1\textwidth},
+                level 2/.style={sibling distance=3em,level distance=.15\textwidth},
+                level 3/.style={sibling distance=1.5em,level distance=.2\textwidth},
+                level 4/.style={sibling distance=1em,level distance=.25\textwidth},]
+    \node{Result}
+        child { node{cnt}
+            child { node{\dots} }
+        }
+        child { node{casual}
+            child { node{\dots} }
+        }
+        child { node{registered}
+            child { node{info}
+                child { node{\vdots} }
+                child { node{AdaBoostRegressor}
+                    child { node{r2\_score} }
+                    child { node{fit\_time} }
+                    child { node{pred\_time} }
+                }
+            }
+            child { node{best}
+                child { node{model} }
+                child { node{r2\_score} }
+            }
+        };
+
+因此我们可以通过上述思想编制程序，从而得出以下的结论（得分均按照\verbbox[violet]{r2_score}）：
+\begin{enumerate}
+    \item \commandbox{day.csv}数据集中：
+        \begin{itemize}
+            \item 未注册用户预测最佳模型：\verbbox[violet]{GradientBoostingRegressor}，分数为0.83；
+            \item 注册用户预测最佳模型：\verbbox[violet]{GradientBoostingRegressor}，分数为0.75；
+            \item 总用户预测最佳模型：\verbbox[violet]{GradientBoostingRegressor}，分数为0.78。
+        \end{itemize}
+
+    \item \commandbox{hour.csv}数据集中：
+        \begin{itemize}
+            \item 未注册用户预测最佳模型：\verbbox[violet]{BaggingRegressor}，分数为0.81；
+            \item 注册用户预测最佳模型：\verbbox[violet]{ExtraTreesRegressor}，分数为0.88；
+            \item 总用户预测最佳模型：\verbbox[violet]{ExtraTreesRegressor}，分数为0.89。
+        \end{itemize}
+
+    \item 时间相关变量数据集中：
+        \begin{itemize}
+            \item 未注册用户预测最佳模型：\verbbox[violet]{GradientBoostingRegressor}，分数为0.68；
+            \item 注册用户预测最佳模型：\verbbox[violet]{GaussianProcessRegressor}，分数为0.82；
+            \item 总用户预测最佳模型：\verbbox[violet]{GaussianProcessRegressor}，分数为0.79。
+        \end{itemize}
+\end{enumerate}

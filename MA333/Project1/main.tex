@@ -1,0 +1,427 @@
+\documentclass{article}
+% Packages
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage[fixamsmath]{mathtools}
+    \newcommand{\vecw}{\mathbf{w}}
+    \newcommand{\vecx}{\mathbf{x}}
+    \newcommand{\vecy}{\mathbf{y}}
+    \newcommand{\vecz}{\mathbf{z}}
+    \newcommand{\vecp}{\mathbf{p}}
+    \newcommand{\rvx}{\mathbf{X}}
+    \newcommand{\matx}{\mathbf{X}}
+    \newcommand{\matd}{\mathbf{D}}
+    \newcommand{\dd}{\mathrm{d}}
+    \newcommand{\diff}[2]{\frac{\dd #1}{\dd #2}}
+    \newcommand{\partialdd}[2]{\frac{\partial #1}{\partial #2}}
+\usepackage{unicode-math}
+    \unimathsetup{math-style=ISO, bold-style=ISO, mathrm=sym}
+    \setsansfont{FiraGO}[BoldFont=* SemiBold, Numbers=Monospaced]
+    \setmathfont{Fira Math}
+\usepackage{hyperref}
+    \hypersetup{
+        pdfauthor={lenovo},
+        pdfcreator={Microsoft® Word 2017},
+        pdfproducer={Microsoft® Word 2017},
+    }
+\usepackage{tikz}
+    \usetikzlibrary{ducks,external}
+\usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhead{}
+        \renewcommand{\headrulewidth}{0pt}
+    \fancyfoot[C]{%
+        \tikzset{external/export=false}%
+        \shuffleducks
+        \begin{tikzpicture}[scale=0.5]
+            \duck[signpost=\scalebox{0.6}{\thepage},\randomhead]
+        \end{tikzpicture}
+    }
+\usepackage{geometry}
+    \geometry{margin=1in}
+\usepackage{tcolorbox}
+    \tcbuselibrary{listings,breakable}
+    \newtcblisting{PyListing}[1]{%
+        listing options={language=Python,numbers=left,breaklines,
+            numberstyle=\tiny\color{red!75!black},firstnumber=last,
+            basicstyle=\small,keywordstyle=\color{blue!85!black},
+            commentstyle=\color{white!75!black}\textit},
+        title=\texttt{#1},listing only,breakable,
+        left=6mm,right=6mm,top=2mm,bottom=2mm,
+        colback=violet!5!white,colframe=violet!75!black}
+    \newtcblisting{Output}{%
+        title=\texttt{Output},listing only,breakable,
+        left=6mm,right=6mm,top=2mm,bottom=2mm,
+        colback=blue!5!white,colframe=blue!75!black}
+    \tcbuselibrary{xparse}
+        \DeclareTotalTCBox{\verbbox}{ O{orange} v !O{} }{
+            fontupper=\ttfamily,nobeforeafter,tcbox raise base,%
+            arc=0pt,outer arc=0pt,top=0pt,bottom=0pt,left=0mm,%
+            right=0mm,leftrule=0pt,rightrule=0pt,toprule=0.3mm,%
+            bottomrule=0.3mm,boxsep=0.5mm,bottomrule=0.3mm,boxsep=0.5mm,%
+            colback=#1!10!white,colframe=#1!50!black,#3}{#2}%
+    \DeclareTotalTCBox{\commandbox}{ s v }{
+            verbatim,colupper=white,colback=black!75!white,colframe=black}{
+                \IfBooleanTF{#1}{\textcolor{red}{\ttfamily\bfseries >> }}{}%
+                    \lstinline[language=sh,morekeywords={python,python2,python3},keywordstyle=\color{blue!35!white}\bfseries]^#2^}%
+% Information
+\title{Project 1}
+\author{Iydon Leong}
+\date{April 3, 2019}
+\begin{document}
+\maketitle
+
+
+% Question 1
+\section{Question 1}\label{S:1}
+According to the question, we can write equation~\eqref{E:1-1}.
+\begin{equation}\label{E:1-1}
+    \begin{dcases}
+        p_1(x;\vecw) = P(y=1|\rvx=\vecx) = \frac{\exp(\vecw^T\vecx)}{1+\exp(\vecw^Tx)} \\
+        p_0(x;\vecw) = P(y=0|\rvx=\vecx) = \frac{1}{1+\exp(\vecw^Tx)}
+    \end{dcases}
+\end{equation}
+
+Therefore, we can conclude that
+\begin{equation*}
+    p_{t}(x;\vecw) = P(y=t|\rvx=\vecx) = \frac{\exp(t\vecw^T\vecx)}{1+\exp(\vecw^Tx)},\quad\text{where $t\in\{0,1\}$.}
+\end{equation*}
+
+Then the log-likelihood function can be rewritten as equation~\eqref{E:1-2}.
+\begin{equation}\label{E:1-2}
+    \begin{aligned}
+        l(\vecw) &= \sum_{i=1}^n\log\left[\frac{\exp(y_i\vecw^T\vecx_i)}{1+\exp(\vecw^T\vecx_i)}\right] \\
+                 &= \sum_{i=1}^n\left[y_i\vecw^T\vecx_i-\log\left(1+e^{\vecw^T\vecx_i}\right)\right]
+    \end{aligned}
+\end{equation}
+
+
+% Question 2
+\section{Question 2}\label{S:2}
+Since $\vecw=(w_0,w_1,\ldots,w_d)^T$ and $\vecx=(x_0,x_1,\ldots,x_d)^T$, then we have equation~\eqref{E:2-1}.
+\begin{equation}\label{E:2-1}
+    l(w_j) = \sum_{i=1}^n\left[y_iw_jx_{ij}-\log\left(1+e^{w_jx_{ij}}\right)\right],\quad j=1,2,\ldots,d.
+\end{equation}
+
+To find the maxima of each log-likelihood function, we just let $\partialdd{l(w_j)}{w_j}=0$, where $j=1,2,\ldots,d$. That is,
+\begin{equation}\label{E:2-2}
+    \begin{aligned}
+        0 &= \partialdd{l(w_j)}{w_j} \\
+          &= \sum_{i=1}^n\left[y_ix_{ij}-\frac{x_{ij}e^{w_jx_{ij}}}{1+e^{w_jx_{ij}}}\right] \\
+          &= \sum_{i=1}^nx_{ij}\left(y_i-p(\vecx_i;\vecw)\right) \\
+          &= \vecx_{\cdot j}^T\left(\vecy-p(\vecx_i;\vecw)\right).
+    \end{aligned}
+\end{equation}
+
+Moreover, we can get the vector form
+\begin{equation}\label{E:2-3}
+    \partialdd{l(\vecw)}{\vecw} = \matx^T\left(\vecy-p(\matx;\vecw)\right).
+\end{equation}
+
+
+% Question 3
+\section{Question 3}\label{S:3}
+From equation~\eqref{E:2-2}, we have the specific forms of $\partialdd{l(w_j)}{w_j}$, where $j=1,2,\ldots,d$. In addition, we can derive the expression of $\partialdd{^2l(w_j)}{w_j^2}$.
+\begin{equation}\label{E:3-1}
+    \begin{aligned}
+        \partialdd{^2l(w_j)}{w_j^2} &= \partialdd{}{w_j}\partialdd{l(w_j)}{w_j} \\
+                                    &= \sum_{i=1}^n-\frac{x_{ij}x_{ij}e^{w_jx_{ij}}\left(1+e^{w_jx_{ij}}\right)-x_{ij}e^{w_jx_{ij}}x_{ij}e^{w_jx_{ij}}}{\left(1+e^{w_jx_{ij}}\right)^2} \\
+                                    &= \sum_{i=1}^n-\frac{x_{ij}^2e^{w_jx_{ij}}}{\left(1+e^{w_jx_{ij}}\right)^2}
+    \end{aligned}
+\end{equation}
+
+We can rewrite equation~\eqref{E:3-1} with vector form.
+\begin{equation}\label{E:3-2}
+    \begin{aligned}
+        \partialdd{^2l(\vecw)}{\vecw\partial\vecw^T} &= -\sum_{i=1}^n\vecx_i\vecx_i^Tp\left(\vecx_i;\vecw\right)\left(1-p(\vecx_i;\vecw)\right) \\
+                                                     &= \matx^T\Lambda\matx
+    \end{aligned}
+\end{equation}
+where $\Lambda$ is a $n\times n$ diagonal matrix with diagonal entries $p\left(\vecx_i;\vecw\right)\left(1-p(\vecx_i;\vecw)\right)$.
+
+
+% Question 4
+\section{Question 4}\label{S:4}
+\begin{equation}\label{E:4-1}
+    \vecw^{(k)} = \arg\min_{\vecw}(\vecz-\matx\vecw)^T\matd(\vecz-\matx\vecw)
+\end{equation}
+
+First of all, we should know the size of matrix and vector to avoid incompatible operation. This can be checked through table~\ref{T:4}.
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{cm{7em}cm{15em}}
+        \toprule
+        Symbols   & Visual Size                         & Size        & Description \\ \midrule
+        \rowcolor[HTML]{EFEFEF} 
+        $\vecp$   & \textcolor{violet!50!white}{\rule{1em}{7em}} & $n\times 1$ & the column vector of $p(\vecx_i;\vecw^{(k-1)})$ \\
+        $\vecw$   & \textcolor{violet!50!white}{\rule{1em}{3em}} & $d\times 1$ & weight \\
+        \rowcolor[HTML]{EFEFEF} 
+        $\vecx_i$ & \textcolor{violet!50!white}{\rule{1em}{3em}} & $d\times 1$ & the column vector sample $x_i$ \\
+        $\vecy$   & \textcolor{violet!50!white}{\rule{1em}{7em}} & $n\times 1$ & the column vector of $y_i$ \\
+        \rowcolor[HTML]{EFEFEF} 
+        $\vecz$   & \textcolor{violet!50!white}{\rule{1em}{7em}} & $n\times 1$ & $\matx\vecw^{(k-1)}+\matd^{-1}(\vecy-\vecp)$ \\
+        $\matd$   & \textcolor{violet!50!white}{\rule{7em}{7em}} & $n\times n$ & matrix with diagonal entries as $p(\vecx_i;\vecw^{(k-1)})(1-p(\vecx_i;\vecw^{(k-1)}))$ \\
+        \rowcolor[HTML]{EFEFEF} 
+        $\matx$   & \textcolor{violet!50!white}{\rule{3em}{7em}} & $n\times d$ & matrix with row entries as $\vecx_i$ \\ \bottomrule
+    \end{tabular}
+    \caption{Visual Size of Matrics and Vectors}\label{T:4}
+\end{table}
+
+Inspired by the least-square algorithm, we then differentiate the evaluation function at equation~\eqref{E:4-2}.
+\begin{equation}\label{E:4-2}
+    \begin{aligned}
+        \partialdd{(\vecz-\matx\vecw)^T\matd(\vecz-\matx\vecw)}{\vecw} &= -2\matx^T\matd(\vecz-\matx\vecw) \\
+                                                                       &= 2\matx^T\matd\matx\vecw-2\matx^T\matd\vecz \\
+                                                                       &= 0
+    \end{aligned}
+\end{equation}
+where $\vecz=\matx\vecw^{(k-1)}+\matd^{-1}(\vecy-\vecp)$. Obviously, we can get the equation~\eqref{E:4-3} by solving $(\matx^T\matd\matx)\vecw = \matx^T\matd\vecz$.
+\begin{equation}\label{E:4-3}
+    \begin{aligned}
+        \vecw &= (\matx^T\matd\matx)^{-1}\matx^T\matd\vecz \\
+              &= (\matx^T\matd\matx)^{-1}\matx^T\matd\left(\matx\vecw^{(k-1)}+\matd^{-1}(\vecy-\vecp)\right) \\
+              &= \vecw^{(k-1)}+(\matx^T\matd\matx)^{-1}\matx^T(\vecy-\vecp)
+    \end{aligned}
+\end{equation}
+
+Back to question~\ref{S:2} and question~\ref{S:3}, or exactly, equation~\eqref{E:2-3} and equation~\eqref{E:3-2}.
+\begin{equation}\label{E:4-4}
+    \vecw^{(k)} = \vecw^{(k-1)} - \left[\left(\partialdd{^2l(\vecw)}{\vecw\partial\vecw^T}\right)^{-1}\partialdd{l(\vecw)}{\vecw}\right]_{\vecw=\vecw^{(k-1)}}
+\end{equation}
+
+That is, the new notations, equation~\eqref{E:4-4} in Newton-Raphson method can be rewritten as equation~\eqref{E:4-1}, where $\vecz=\matx\vecw^{(k-1)}+\matd^{-1}(\vecy-\vecp)$. This is the so-called iteratively reweighted least square(RLS) algorithm.
+
+\clearpage
+
+
+% Question 5-7
+\section{Question 5--7}\label{S:5-7}
+There are two \verbbox{Python} programs, one implements the IRLS algorithm, the other compute and compare the results between my own program and the sklearn program. The result is shown at the end.
+\begin{PyListing}{logistic\_regression.py}
+from numpy import array, diag, divide, exp, matrix, power, zeros
+from numpy.linalg import inv, norm
+
+
+class logistic_regression_IRLS(object):
+    """
+    Maximum likelihood approach for logistic regression
+    """
+    def __init__(self):
+        self.w = None
+
+    def fit(self, X, y, w0=None, erf=None, maxit=None):
+        self.__newton_raphson(X, y, w0, erf, maxit)
+
+    def predict(self, X):
+        y = X * self.w
+        return array((y>0).astype(int).T)[0]
+        
+    def __newton_raphson(self, X, y, w0=None, erf=None, maxit=None):
+        """
+        Args:
+            X:   nxd matrix.
+            y:   nx1 column vector.
+            w0:  dx1 column vector.
+            erf: error function with two parameters.
+                 erf = lambda old,new: ...
+        """
+        # Pre-process
+        X   = matrix(X)
+        n,d = X.shape
+        y   = matrix(y).reshape(n, 1)
+        if w0==None:
+            w0 = zeros((d, 1))
+        if erf==None:
+            erf = lambda old,new: norm(old-new,2)<1e-6
+        if maxit==None:
+            maxit = 64
+        w1 = zeros((d, 1))
+        ex = zeros((n, 1))
+        # Iterations
+        for i in range(maxit):
+            ex = exp(X*w0).T
+            D  = diag(array(ex/power(1+ex,2))[0])
+            w1 = w0 + inv(X.T*D*X)*X.T*(y-(ex/(1+ex)).T)
+            if erf(w0, w1):
+                print("Convergence @ the %d iteration(s)."%i)
+                break
+            w0 = w1
+        self.w = w1
+\end{PyListing}
+
+\begin{PyListing}{main.py}
+import numpy as np
+
+from logistic_regression import logistic_regression_IRLS
+from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score
+
+from sklearn.linear_model import LogisticRegression as Regression
+
+
+def read_dat(path):
+    # raw text
+    encode = "utf-8"
+    with open(path, "r", encoding=encode) as f:
+        while True:
+            content = f.readline()
+            if content[0] != "@":
+                break
+        content += f.read()
+    # analysis
+    data = [line.split(", ") for line in content.splitlines()]
+    one_hot = {"Absent":0, "Present":1}
+    for i,k in enumerate(data):
+        data[i][4] = one_hot.get(k[4], -1)
+    data = np.array(data, dtype=float)
+    # input and output
+    return data[:,:-1], data[:,-1].astype(int)
+
+def evaluation(y_true, y_pred):
+    # data
+    c = confusion_matrix(y_true, y_pred)
+    a = accuracy_score(y_true, y_pred)
+    p = precision_score(y_true, y_pred)
+    r = recall_score(y_true, y_pred)
+    # output
+    print("Accuracy classification score:  %.3f"%a)
+    print("Precision classification score: %.3f"%p)
+    print("Recal classification score:     %.3f"%r)
+    print("Confusion matrix:\n%s"%c)
+
+
+for i in range(5):
+    train = "saheart-5-%dtra.dat"%(i+1)
+    test  = "saheart-5-%dtst.dat"%(i+1)
+    X_train,y_train = read_dat(train)
+    X_test,y_test   = read_dat(test)
+
+    model1 = logistic_regression_IRLS()
+    model1.fit(X_train, y_train)
+
+    model2 = Regression(solver="newton-cg")
+    model2.fit(X_train, y_train)
+
+    y_pred1 = model1.predict(X_test)
+    y_pred2 = model2.predict(X_test)
+
+    print(train, test)
+    print("-"*37)
+    print("IRIS Algorithm" + "-"*23)
+    evaluation(y_test, y_pred1)
+    print("LogisticRegression" + "-"*19)
+    evaluation(y_test, y_pred2)
+    print("-"*37, "\n"*3)
+\end{PyListing}
+
+\twocolumn
+\begin{Output}
+saheart-5-1tra.dat saheart-5-1tst.dat
+-------------------------------------
+IRIS Algorithm-----------------------
+Accuracy classification score:  0.731
+Precision classification score: 0.684
+Recal classification score:     0.406
+Confusion matrix:
+[[55  6]
+ [19 13]]
+LogisticRegression-------------------
+Accuracy classification score:  0.731
+Precision classification score: 0.640
+Recal classification score:     0.500
+Confusion matrix:
+[[52  9]
+ [16 16]]
+-------------------------------------
+
+
+
+saheart-5-2tra.dat saheart-5-2tst.dat
+-------------------------------------
+IRIS Algorithm-----------------------
+Accuracy classification score:  0.774
+Precision classification score: 0.739
+Recal classification score:     0.531
+Confusion matrix:
+[[55  6]
+ [15 17]]
+LogisticRegression-------------------
+Accuracy classification score:  0.763
+Precision classification score: 0.727
+Recal classification score:     0.500
+Confusion matrix:
+[[55  6]
+ [16 16]]
+-------------------------------------
+
+
+
+saheart-5-3tra.dat saheart-5-3tst.dat
+-------------------------------------
+IRIS Algorithm-----------------------
+Accuracy classification score:  0.739
+Precision classification score: 0.682
+Recal classification score:     0.469
+Confusion matrix:
+[[53  7]
+ [17 15]]
+LogisticRegression-------------------
+Accuracy classification score:  0.728
+Precision classification score: 0.667
+Recal classification score:     0.438
+Confusion matrix:
+[[53  7]
+ [18 14]]
+-------------------------------------
+
+
+
+saheart-5-4tra.dat saheart-5-4tst.dat
+-------------------------------------
+IRIS Algorithm-----------------------
+Accuracy classification score:  0.707
+Precision classification score: 0.586
+Recal classification score:     0.531
+Confusion matrix:
+[[48 12]
+ [15 17]]
+LogisticRegression-------------------
+Accuracy classification score:  0.739
+Precision classification score: 0.633
+Recal classification score:     0.594
+Confusion matrix:
+[[49 11]
+ [13 19]]
+-------------------------------------
+
+
+
+saheart-5-5tra.dat saheart-5-5tst.dat
+-------------------------------------
+IRIS Algorithm-----------------------
+Accuracy classification score:  0.609
+Precision classification score: 0.429
+Recal classification score:     0.375
+Confusion matrix:
+[[44 16]
+ [20 12]]
+LogisticRegression-------------------
+Accuracy classification score:  0.685
+Precision classification score: 0.552
+Recal classification score:     0.500
+Confusion matrix:
+[[47 13]
+ [16 16]]
+-------------------------------------
+\end{Output}
+
+
+% Question 8
+\section{Question 8}
+Yes, I can improve my results for the following reasons exist.
+\begin{enumerate}
+    \item The data I use does not have regularization.
+    \item The diagonal matrices can use sparse matrix algorithm to calculate its inverse and multiplication.
+    \item Python is flexible but slow, we can use some compiled language to speed up computing.
+\end{enumerate}
+
+\end{document}
