@@ -30,14 +30,51 @@
 % Header and Footer
     % geometry
     \usepackage{geometry}
-        \geometry{margin=1in}
+        % \geometry{margin=1in}
     % fancy header
     \usepackage{fancyhdr}
-        \fancyhead[L]{}
-        \fancyhead[C]{Iydon Liang, 11711217}
-        \fancyhead[R]{}
-        \renewcommand{\headrulewidth}{0.4pt}
-        \pagestyle{fancy}
+        % \fancyhead[L]{}
+        % \fancyhead[C]{Iydon Liang, 11711217}
+        % \fancyhead[R]{}
+        % \renewcommand{\headrulewidth}{0.4pt}
+        % \pagestyle{fancy}
+
+% Listings
+    % Python
+    \usepackage{tcolorbox}
+        \tcbuselibrary{listings,breakable}
+        \newtcblisting{pylist}[1]{
+            listing options={language=Python,numbers=left,
+                numberstyle=\tiny\color{red!75!black},breaklines,
+                basicstyle=\small,keywordstyle=\color{blue!85!black},
+                commentstyle=\color{white!75!black}\textit},
+            title=\texttt{#1},listing only,breakable,
+            left=6mm,right=6mm,top=2mm,bottom=2mm,
+            colback=violet!5!white,colframe=violet!75!black}
+        \newtcbinputlisting{\Python}[2]{%
+            listing options={language=Python,numbers=left,
+                numberstyle=\tiny\color{red!75!black},
+                basicstyle=\small,keywordstyle=\color{blue!85!black},
+                commentstyle=\color{white!75!black}\textit,breaklines},
+            listing only,breakable,
+            listing file={#2},title=\texttt{#1},
+            left=6mm,right=6mm,top=2mm,bottom=2mm,
+            colback=violet!5!white,colframe=violet!75!black}
+        \tcbuselibrary{xparse}
+            \DeclareTotalTCBox{\verbbox}{ O{orange} v !O{} }
+                {fontupper=\ttfamily,nobeforeafter,tcbox raise base,
+                 arc=0pt,outer arc=0pt,top=0pt,bottom=0pt,left=0mm,
+                 right=0mm,leftrule=0pt,rightrule=0pt,toprule=0.3mm,
+                 bottomrule=0.3mm,boxsep=0.5mm,bottomrule=0.3mm,boxsep=0.5mm,
+                 colback=#1!10!white,colframe=#1!50!black,#3}{#2}
+        \DeclareTotalTCBox{\commandbox}{ s v }
+                {verbatim,colupper=white,colback=black!75!white,colframe=black}
+                {\IfBooleanTF{#1}{\textcolor{red}{\ttfamily\bfseries >> }}{}
+                    \lstinline[language=sh,morekeywords={python,python2,python3},keywordstyle=\color{blue!35!white}\bfseries]^#2^}
+        \tcbuselibrary{theorems}
+        \newtcbtheorem{theobox}{Theorem}%
+            {colback=white,colframe=orange!90!black,fonttitle=\bfseries,%
+             arc=2mm,separator sign={\ $\blacktriangleright$}}{theo}%
 
 % Miscellaneous
     % reading font
@@ -52,3 +89,13 @@
     \usepackage{gbt7714}
     % show label keys
     % \usepackage{showkeys}
+    % change notes
+    \let\comment\relax
+    \usepackage[commentmarkup=todo,
+        todonotes={textsize=tiny}]{changes}
+        \definechangesauthor[color=violet!30]{Iydon}
+        \newcommand{\增加}[2]{\added[id=Iydon, comment={#1}]{#2}}
+        \newcommand{\删除}[2]{\deleted[id=Iydon, comment={#1}]{#2}}
+        \newcommand{\替换}[3]{\replaced[id=Iydon, comment={#1}]{#2}{#3}}
+        \newcommand{\高亮}[2]{\highlight[id=Iydon, comment={#1}]{#2}}
+        \newcommand{\注释}[1]{\comment[id=Iydon]{#1}}
