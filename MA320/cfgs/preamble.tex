@@ -75,6 +75,87 @@
         \newtcbtheorem{theobox}{Theorem}%
             {colback=white,colframe=orange!90!black,fonttitle=\bfseries,%
              arc=2mm,separator sign={\ $\blacktriangleright$}}{theo}%
+    % Notepad
+    \tcbuselibrary{most}
+    \usetikzlibrary{shapes.geometric}
+    \definecolor{blue1}{RGB}{176,209,244}
+    \definecolor{gray1}{RGB}{212,219,239}
+    \definecolor{gray2}{RGB}{239,239,239}
+    \definecolor{red1}{RGB}{187,71,54}
+    \newtcolorbox{notepad}[1][Untitled]{
+    freelance,
+    coltitle=black,
+    fonttitle=\footnotesize,
+    frame code={
+      \draw[rounded corners=2pt,fill=blue1] 
+        ([xshift=-2pt]frame.north west) --
+        ([xshift=2pt]frame.north east) --
+        ([xshift=2pt,yshift=-2pt]frame.south east) --
+        ([xshift=-2pt,yshift=-2pt]frame.south west) -- cycle;
+      \node[draw,fill=red1,anchor=north east,inner ysep=0pt,text width=10pt,minimum height=8pt] 
+      at ([xshift=-1.5pt]frame.north east) (close) {};
+      \node[draw,fill=gray1,anchor=north east,inner ysep=0pt,text width=10pt,minimum height=8pt] 
+      at ([xshift=\pgflinewidth]close.north west) (minim) {};
+      \node[draw,fill=gray1,anchor=north east,inner ysep=0pt,text width=10pt,minimum height=8pt] 
+      at ([xshift=\pgflinewidth]minim.north west) (hide) {};
+      \draw[double,fill=gray1] 
+        ([xshift=-2pt,yshift=-2pt]minim.center) rectangle 
+        ([xshift=2pt,yshift=2pt]minim.center);
+      \draw[fill=white] 
+        ([xshift=-3pt,yshift=-1pt]hide.center) rectangle 
+        ([xshift=3pt,yshift=-2.2pt]hide.center);
+      \draw[fill=white,rotate=45] 
+        ([xshift=-3pt,yshift=-0.8pt]close.center) rectangle 
+        ([xshift=3pt,yshift=0.8pt]close.center);
+      \draw[fill=white,rotate=135] 
+        ([xshift=-3pt,yshift=-0.8pt]close.center) rectangle 
+        ([xshift=3pt,yshift=0.8pt]close.center);
+      \draw[draw=none,fill=white,rotate=45] 
+        ([xshift=-3pt+\pgflinewidth,yshift=-0.8pt+\pgflinewidth]close.center) rectangle 
+        ([xshift=3pt-\pgflinewidth,yshift=0.8pt-\pgflinewidth]close.center);
+      },
+      title code={
+        \draw[fill=gray1] 
+          (title.south west) rectangle 
+          ([yshift=10pt]title.south east);
+        \node[anchor=south west,inner ysep=0pt,xshift=1.5pt] 
+          at (title.south west) 
+          {\footnotesize File\quad Edit\quad Format\quad View\quad Help};
+      },
+      bottomtitle=12pt,
+    interior titled code={
+      \draw[fill=white] 
+        (interior.north west) --
+        (interior.north east) --
+        (interior.south east) --
+        (interior.south west) -- cycle;
+      \draw[fill=gray2,draw=gray!30] 
+        ([xshift=-7pt,yshift=-\pgflinewidth]interior.north east) rectangle 
+        ([xshift=-\pgflinewidth,yshift=7+\pgflinewidth]interior.south east);    
+      \draw[fill=gray2,draw=gray!30] 
+        ([yshift=7pt,xshift=\pgflinewidth]interior.south west) rectangle 
+        ([xshift=-7pt-\pgflinewidth,yshift=+\pgflinewidth]interior.south east);
+      \node[isosceles triangle,fill=black!70,minimum height=1cm,minimum width=2cm, shape border rotate=180, isosceles triangle stretches,scale=0.105] 
+        at ([yshift=3.5pt,xshift=4pt]interior.south west) {};      
+      \node[isosceles triangle,fill=black!70,minimum height=1cm,minimum width=2cm, shape border rotate=0, isosceles triangle stretches,scale=0.105] 
+        at ([yshift=3.5pt,xshift=-11pt]interior.south east) {};      
+      \node[isosceles triangle,fill=black!70,minimum height=1cm,minimum width=2cm, shape border rotate=90, isosceles triangle stretches,scale=0.105] 
+        at ([xshift=-3.5pt,yshift=-5pt]interior.north east) {};      
+      \node[isosceles triangle,fill=black!70,minimum height=1cm,minimum width=2cm, shape border rotate=-90, isosceles triangle stretches,scale=0.105] 
+        at ([xshift=-3.5pt,yshift=12pt]interior.south east) {};      
+      \draw[fill=gray2,draw=gray!30] 
+        ([yshift=7pt,xshift=-7pt]interior.south east) rectangle 
+        ([xshift=-\pgflinewidth,yshift=+\pgflinewidth]interior.south east);
+      \fill[gray1!94!black]
+        ([yshift=\pgflinewidth,xshift=-\pgflinewidth]interior.south east) --   
+        ([yshift=7pt,xshift=-\pgflinewidth]interior.south east) --   
+        ([xshift=-7pt,yshift=\pgflinewidth]interior.south east) -- cycle;  
+      },
+      title={\hspace*{11pt}#1-Notepad},
+      height=8cm,
+      left=1.5pt,
+      right=8.5pt,
+    }
 
 % Miscellaneous
     % reading font

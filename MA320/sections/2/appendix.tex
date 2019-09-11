@@ -1,0 +1,28 @@
+% !Mode:: "TeX:UTF-8"
+% !TEX program  = xelatex
+\section{Python Code}
+\Python{Sum of Progression}{code/2.py}
+
+\begin{notepad}[Result.txt]\scriptsize
+\begin{verbatim}
+    //          r                        \
+    ||        -----           for |r| < 1|
+    ||        1 - r                      |
+    ||                                   |
+    ||/   r                              |
+    ||| -----    for |r| < 1             |
+    ||| 1 - r                            |
+a_0*|<|                                  |
+    |||  oo                              |
+    ||< ___                    otherwise |
+    ||| \  `                             |
+    |||  \    n   otherwise              |
+    |||  /   r                           |
+    ||| /__,                             |
+    \\\n = 1                             /
+          / 2    \
+          |n    n|
+a_0*n + d*|-- + -|
+          \2    2/
+\end{verbatim}
+\end{notepad}
