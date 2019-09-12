@@ -1,0 +1,39 @@
+\section{问题描述}
+\subsection{概念描述}
+\begin{itemize}
+    \item 数据特征分析：包括分布分析、对比分析、统计分析、帕累托分析、正态性检验及相关性分析。
+    \item 数据预测：通过数学工具（统计等）找到数据本质联系的过程。
+    \item 数据可视化：借助于图形化手段，清晰有效地传达信息。
+\end{itemize}
+
+
+\subsection{真实数据描述}
+数据集来自\href{http://capitalbikeshare.com/system-data}{capitalbikeshare}\cite{data}。\verbbox[gray]{hour.csv}数据集有17379条数据且无缺失，总共记录了17379小时；\verbbox[gray]{day.csv}数据集有731条数据且无缺失，总共记录了两年的单车使用状况。除了\verbbox[blue]{hr}维度不存在于\verbbox[gray]{day.csv}外，两个数据集都有以下的维度：
+\begin{itemize}
+    \item \verbbox[blue]{instant}:：记录的索引
+    \item \verbbox[blue]{dteday}：日期
+    \item \verbbox[blue]{season}：季节（1至4分别代表春夏秋冬）
+    \item \verbbox[blue]{yr}：年（0至1分别代表2011年与2012年）
+    \item \verbbox[blue]{mnth}：月份（1至12）
+    \item \verbbox[blue]{hr}：小时（0至23）
+    \item \verbbox[blue]{holiday}：是否为节假日（根据\href{http://dchr.dc.gov/page/holiday-schedule}{\texttt{dc.gov}}网站）
+    \item \verbbox[blue]{weekday}：该日是一周的第几天
+    \item \verbbox[blue]{workingday}：是否为工作日
+    \item \verbbox[blue]{weathersit}：天气情况（1至4分别代表晴天、多云、小雨、暴雨）
+    \item \verbbox[blue]{temp}：标准化的摄氏度下温度（除以最大值41）
+    \item \verbbox[blue]{atemp}：标准化的摄氏度下的体感温度（除以最大值50）
+    \item \verbbox[blue]{hum}：标准化的湿度（除以最大值100）
+    \item \verbbox[blue]{windspeed}：标准化的风速（除以最大值67）
+    \item \verbbox[blue]{casual}：未注册用户的数量
+    \item \verbbox[blue]{registered}：注册用户的数量
+    \item \verbbox[blue]{cnt}：注册与未注册用户的总数量
+\end{itemize}
+
+从直观来说，共享单车的使用过程与周围的环境性与季节性的变化密切相关，例如天气的状态、降雨量、季节、一周内相对时间、一天内相对时间等。于是我们可以得到下述假设：
+\begin{itemize}
+    \item 天气晴朗适宜单车出行而阴雨不适宜；
+    \item 温度舒适适宜单车出行而过低过高不适宜；
+    \item 位于工作日由于上下班需求单车使用率高而周末出门游玩单车使用率可能也较高；
+    \item 一天内上下班高峰期与中午时间单车使用率高而其他时间使用率相对较低。
+\end{itemize}
+因此我们使用时间相关的变量去预测注册用户与未注册用户的数量，同时使用环境相关的变量去预测注册用户与未注册用户的数量。我们可以将此问题看作回归问题，同时构造回归模型。

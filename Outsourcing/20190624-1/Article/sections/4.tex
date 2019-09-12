@@ -1,0 +1,29 @@
+\section{程序运行结果示例}
+\subsection{数据特征分析与预测}
+我们可以通过上述思想编制程序，从而得出以下的结论（得分均按照\verbbox[violet]{r2_score}）：
+\begin{enumerate}
+    \item \verbbox[gray]{day.csv}数据集中：
+        \begin{itemize}
+            \item 未注册用户预测最佳模型：\verbbox[violet]{GradientBoostingRegressor}，分数为0.83；
+            \item 注册用户预测最佳模型：\verbbox[violet]{GradientBoostingRegressor}，分数为0.75；
+            \item 总用户预测最佳模型：\verbbox[violet]{GradientBoostingRegressor}，分数为0.78。
+        \end{itemize}
+
+    \item \verbbox[gray]{hour.csv}数据集中：
+        \begin{itemize}
+            \item 未注册用户预测最佳模型：\verbbox[violet]{BaggingRegressor}，分数为0.81；
+            \item 注册用户预测最佳模型：\verbbox[violet]{ExtraTreesRegressor}，分数为0.88；
+            \item 总用户预测最佳模型：\verbbox[violet]{ExtraTreesRegressor}，分数为0.89。
+        \end{itemize}
+
+    \item 时间相关变量数据集中：
+        \begin{itemize}
+            \item 未注册用户预测最佳模型：\verbbox[violet]{GradientBoostingRegressor}，分数为0.68；
+            \item 注册用户预测最佳模型：\verbbox[violet]{GaussianProcessRegressor}，分数为0.82；
+            \item 总用户预测最佳模型：\verbbox[violet]{GaussianProcessRegressor}，分数为0.79。
+        \end{itemize}
+\end{enumerate}
+
+
+\subsection{数据可视化}
+详见问题分析章节中数据可视化示例小节。
