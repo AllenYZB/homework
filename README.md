@@ -10,3 +10,6 @@
 
 ## GE1221
 [心理学](GE1221)。
+
+## Outsourcing
+[Outsourcing](Outsourcing)
