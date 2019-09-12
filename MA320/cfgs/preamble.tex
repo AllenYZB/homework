@@ -75,6 +75,9 @@
         \newtcbtheorem{theobox}{Theorem}%
             {colback=white,colframe=orange!90!black,fonttitle=\bfseries,%
              arc=2mm,separator sign={\ $\blacktriangleright$}}{theo}%
+        \newtcbtheorem{defnbox}{Definition}%
+            {colback=white,colframe=blue!90!black,fonttitle=\bfseries,%
+             arc=2mm,separator sign={\ $\blacktriangleright$}}{defn}%
     % Notepad
     \tcbuselibrary{most}
     \usetikzlibrary{shapes.geometric}
@@ -170,6 +173,9 @@
     \usepackage{gbt7714}
     % show label keys
     % \usepackage{showkeys}
+    % chessboard
+    \usepackage{chessboard}
+        \setchessboard{smallboard, showmover=false}
     % change notes
     \let\comment\relax
     \usepackage[commentmarkup=todo,

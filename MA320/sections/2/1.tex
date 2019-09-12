@@ -1,18 +1,22 @@
 % !Mode:: "TeX:UTF-8"
 % !TEX program  = xelatex
-\subsection{Definition}
-\begin{theobox}{Geometric Progression\cite{Weisstein2019gp}}{gp}
-    A geometric sequence is a sequence $\{a_k\}, k=0, 1, \ldots$, such that each term is given by a multiple $r$ of the previous one. Another equivalent definition is that a sequence is geometric iff\footnote{if and only if} it has a zero series bias. If the multiplier is $r$, then the $k$th term is given by
-    \[
-        a_k = ra_{k-1} = r^2a_{k-2} = \cdots = a_0r^k.
-    \]
+There is a story about geometric progression called \emph{The rice and the chessboard}\cite{Dejan2018chessboard}:
+\begin{quotation}
+    There was once a king in India who was a big chess enthusiast and had the habit of challenging wise visitors to a game of chess. One day a traveling sage was challenged by the king. The sage having played this game all his life all the time with people all over the world gladly accepted the Kings challenge. To motivate his opponent the king offered any reward that the sage could name. The sage modestly asked just for a few grains of rice in the following manner: the king was to put a single grain of rice on the first chess square and double it on every consequent one. The king accepted the sage's request.
+    \begin{center}
+        \chessboard
+    \end{center}
 
-    Taking $a_0=1$ gives the simple special case
-    \[
-        a_k = r^k.
-    \]
-\end{theobox}
+    Having lost the game and being a man of his word the king ordered a bag of rice to be brought to the chessboard. Then he started placing rice grains according to the arrangement: 1 grain on the first square, 2 on the second, 4 on the third, 8 on the fourth and so on.
+\end{quotation}
 
-\begin{theobox}{Arithmetic Progression\cite{Weisstein2019ap}}{ap}
-    An arithmetic progression, also known as an arithmetic sequence, is a sequence of $n$ numbers $\{a_0+kd\}^{n-1}_{k=0}$ such that the differences between successive terms is a constant $d$.
-\end{theobox}
+Let us just calculate how many grains of rice did the king need to be a man of his word,
+\begin{align*}
+     & 1 + 2 + 2^2 + \cdots + 2^{63} \\
+    =& 2^0 + 2^1 + 2^2 + \cdots + 2^{63} = \sum_{n=0}^{63} 2^n \\
+    =& 18,446,744,073,709,551,615.
+\end{align*}
+
+That is to say, the amount of the grains the king needs is equal to about 210 billion tons and is allegedly sufficient to cover the whole territory of India with a meter thick layer of rice\footnote{A grain of rice is approximately 0.2 inches long. Converting 0.2 inches to feet.}.
+
+In fact, the formula for calculating rice is equivalent to the summation of the first $n$ terms in a geometric progression. Popularly speaking, a geometric progression is a sequence of numbers where each term after the first is found by multiplying the previous one by a fixed, non-zero number, we will give a mathematical definition and derivation process in the next section.
