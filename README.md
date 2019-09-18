@@ -14,5 +14,8 @@
 ## GE1221
 [心理学](GE1221)。
 
+## HUM009
+[人文名家专题系列课程](HUM009)
+
 ## Outsourcing
 [Outsourcing](Outsourcing)
