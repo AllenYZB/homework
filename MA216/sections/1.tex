@@ -46,7 +46,7 @@ The top 10 best quantitative finance books I find in \href{https://www.wallstree
     Try to create an account with 10k RMB and keep simulated trading for the rest of the semester.
 \end{statebox}
 The website I use to simulate trading is \href{https://www.ricequant.com/quant/}{RiceQuant}, which has some \texttt{Python} modules called \verbbox{rqalpha}, \verbbox{rqfactor}, etc. Since I am new to the computational finance, there is a lot of basics about finance I need to learn. Therefore when finishing learning the financial basics, I will create an account and keep simulated trading for the rest of the semester, now I have read the API documentation of the RiceQuant, but without the theoretical support, what I can do is limited, here comes the first getting-started strategy I have learned in the RiceQuant:
-\begin{pylist}
+\begin{pylist}{RiceQuant}
 def init(context):
     context.s1 = "000001.XSHE"
     logger.info("Interested at stock: " + str(context.s1))
