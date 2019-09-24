@@ -1,0 +1,187 @@
+% !Mode:: "TeX:UTF-8"
+% !TEX program  = xelatex
+\title[The Geometric Progression]{How to Calculate the Total Amount of Your Salary?}
+\author[MA320 Group]{
+    \begin{tabular}{ll}
+        1. & Jin Cai \\
+        2. & Zeyu Dong \\
+        3. & Yi'an Yu \\
+        4. & Daoyuan Lai \\
+        5. & Guoyang Qin \\
+        6. & Iydon Liang
+    \end{tabular}
+}
+\date{\today}
+\institute[SUSTech]{
+    Department of Mathematics \\
+    Southern University of Science and Technology
+}
+
+\begin{frame}
+    \maketitle
+\end{frame}
+
+% \begin{frame}{Outline}
+%     \tableofcontents
+% \end{frame}
+
+
+\section{Introduction}
+\begin{frame}[<+->]{Introduction}
+    \begin{exmp}
+        \begin{itemize}
+            \item Many jobs offer an annual cost-of-living increase to keep salaries consistent with inflation.
+            \item A recent college graduate finds a position as a sales manager earning an annual salary of \$ 26,000.
+            \item He is promised a 2\% cost of living increase each year.
+        \end{itemize}
+    \end{exmp}
+    \begin{itemize}
+        \item So how could we determine how much this college graduate will get after $n$, which is a natural integer, years' hard work?
+        \item This question arises naturally as payment is one of the most significant factors people will consider when finding a job.
+    \end{itemize}
+\end{frame}
+
+
+
+\section{The Geometric Progression}
+\begin{frame}[<+->]{The Geometric Progression}
+    \begin{itemize}
+        \item Let's review the definition of \textbf{arithmetic progression} (Doe(2019)) first.
+    \end{itemize}
+    \begin{defn}
+        In an \textbf{arithmetic progression}, the difference between $n^\text{th}$ term and $(n-1)^\text{th}$ term will be a constant which is known as the common difference of the arithmetic progression.
+    \end{defn}
+    \begin{itemize}
+        \item What if the ratio of $n^\text{th}$ term to $(n-1)^\text{th}$ term in a sequence is a constant?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]{The Geometric Progression}
+    \begin{defn}
+        A \textbf{geometric progression} is a sequence in which each term is derived by multiplying or dividing the preceding term by a fixed number called the \textbf{common ratio}.
+    \end{defn}
+    \begin{defn}
+        If we define the initial term of a sequence $\{a_n\}$ as $a_1$, then $\{a_n\}$ is a \textbf{geometric progression} ($a_n\neq 0$ for any $n$) if and only if for any positive integer $n$,
+        \[
+            \frac{a_{n+1}}{a_n} = r,
+        \]
+        where $r$ is a constant.
+    \end{defn}
+\end{frame}
+
+
+
+\section{Summation of Geometric Progression (Finite Case)}
+\begin{frame}[<+->]{Summation of Geometric Progression}
+    \begin{defn}
+        The sum of the terms in a geometric sequence is called a \textbf{geometric series}.
+    \end{defn}
+    \begin{thm}
+        The formula for $S_n$ is
+        \[
+            S_n = \frac{a_1(1-r^n)}{1-r},\quad r\neq 1,
+        \]
+        where $S_n$ is the geometric series.
+    \end{thm}
+    \begin{itemize}[<+->]
+        \item How to derive this theorem?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[<+->]{Summation of Geometric Progression}
+    \begin{proof}
+        \begin{itemize}
+            \item Recall that a geometric progression is a sequence in which the ratio of any two consecutive terms is the common ratio, $r$. We can write the sum of the first $n$ terms of a geometric series as
+                \begin{equation}\label{E:proof-gp-1}
+                    S_n = a_1 + ra_1 + r^2a_1 + \cdots + r^{n-1}a_1.
+                \end{equation}
+            \item We will begin by multiplying both sides of the equation by $r$,
+                \begin{equation}\label{E:proof-gp-2}
+                    rS_n = ra_1 + r^2a_1 + r^3a_1 + \cdots + r^na_1.
+                \end{equation}
+            \item Next, if we subtract \eqref{E:proof-gp-2} from \eqref{E:proof-gp-1},
+                \[
+                    S_n-rS_n = (a_1 + ra_1 + r^2a_1 + \cdots + r^{n-1}a_1) - (ra_1 + r^2a_1 + r^3a_1 + \cdots + r^na_1).
+                \]
+        \end{itemize}
+        \vspace{-.7 cm}
+    \end{proof}
+\end{frame}
+
+\begin{frame}[<+->]{Summation of Geometric Progression}
+    \begin{proof}
+        \begin{itemize}
+            \item Notice that when we subtract, all but the first term of the top equation and the last term of the bottom equation are canceled.
+            \item And it is trivial to obtain the formula for $S_n$,
+                \begin{equation}\label{E:gp-formula}
+                    S_n = \frac{a_1(1-r^n)}{1-r},\quad r\neq 1.
+                \end{equation}
+            \item Notice that we have assumed that the common ratio $r$ does not equal to 1.
+        \end{itemize}
+    \end{proof}
+\end{frame}
+
+
+\section{Summation of Geometric Progression (Infinite Case)}
+\begin{frame}[<+->]{Summation of Geometric Progression}
+    \begin{itemize}
+        \item The number of terms in infinite geometric progression will approach infinity ($n=\infty$).
+        \item The formal definition of infinity has been discussed in Zhang(2018).
+        \item Sum of infinity geometric progression can only be defined at the range of $-1<r<1 (r\neq 0)$ exclusive.
+    \end{itemize}
+    \begin{thm}
+        The sum of an infinite geometric progression is
+        \[
+            S = \frac{a_1}{1-r}.
+        \]
+    \end{thm}
+\end{frame}
+
+
+
+\section{Application to the Salary Example}
+\begin{frame}[<+->]{Application to the Salary Example}
+    \begin{exmp}[Salary Problem]
+        \begin{itemize}
+            \item There will be a 102\% annual increment. So the common ratio $r$ is 1.02.
+            \item If we consider the first 5 years' total amount of the salary, we could calculate $S_5$ by directly substituting $n=5$, $r=1.02$, $a_1=26,000$ into Equation~\eqref{E:gp-formula}.
+            \item We will get $S_5=137,907.06$. I.e.This graduate will get \$137,907.06 after 5 years' working.
+        \end{itemize}
+    \end{exmp}
+\end{frame}
+
+
+
+\section{Conclusion}
+\begin{frame}{Conclusion}
+    \begin{itemize}[<+->]
+        \item We derived the formula of the geometric series.
+        \item Furthermore, with a proper choice of the common ratio, we showed that this formula can be generalized to infinite case.
+        \item A real problem is analyzed to illustrate the proposed formula and answered the question in the title: by using the formula proposed in this paper, we could calculate the total amount of the salary if it has a constant multiple of the common ratio each payment period.
+    \end{itemize}
+\end{frame}
+
+
+
+\section{Acknowledgments}
+\begin{frame}{Acknowledgments}
+    \begin{itemize}[<+->]
+        \item The author would like to thank the Associate Editor and one referee for their valuable comments which have greatly improved the paper.
+        \item The author's research is fully supported by the National Baby Natural Science Foundation of China(No. 1000001).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \centering\Huge Thank you!
+\end{frame}
+
+
+
+\section{References}
+\begin{frame}[c, allowframebreaks]{Reference}
+    \begin{thebibliography}{9}\large
+        \bibitem{Doe2019} Doe,J.(2019). The Arithmetic Progression. \emph{Mathematics for Beginners} 33:1465–1480.
+        \bibitem{Smith2019} Smith,J., Smith A.J., Smith B.J.(2019). Summation of Arithmetic Progression. \emph{Journal of the Royal Baby Statistical Society, Series B} 63:111–126. 33:1465–1480.
+        \bibitem{Zhang2018} Zhang,J.(2018). The Formal Discussion of Infinity. \emph{Annals of Baby Mathematics} 9:705–724.
+    \end{thebibliography}
+\end{frame}
