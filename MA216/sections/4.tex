@@ -7,23 +7,33 @@
 \begin{statebox}{}{question-1}
     Why is the denominator $M-1$ instead of $M$?
     \[
-    	\sigma_M^2 := \frac{1}{M-1}\sum_{i=1}^{M} (\epsilon_i-\mu_M)^2
+    	\sigma_M^2 := \frac{1}{M-1}\sum_{i=1}^{M} (\xi_i-\mu_M)^2
     \]
 \end{statebox}
 
 
+简单说是因为共线性，$n$个样本的自由度为$n$，但是样本都减去样本均值后自由度就变为$n-1$，所以分母上应为$n-1$。证明思路为
+\begin{align*}
+	E\left[\frac{1}{n}\sum_{i=1}^{n}\left(X_i-\bar{X}\right)^2\right] &= E\left[\frac{1}{n}\sum_{i=1}^{n}\left((X_i-\mu)-(\bar{X}-\mu)\right)^2\right] \\
+	&= E\left[\frac{1}{n}\sum_{i=1}^{n}\left(X_i-\mu\right)^2\right] - E\left[\frac{1}{n}\sum_{i=1}^{n}\left(\bar{X}-\mu\right)^2\right] \\
+	&= \sigma^2 - \frac{1}{n}\sigma^2 = \frac{n-1}{n}\sigma^2
+\end{align*}
 
-\section{Question 2}
+因此我们得到满足$E[S^2]=\sigma^2$的无偏估计
+\[
+	S^2 = \frac{1}{n-1}\sum_{i=1}^{n}\left(X_i-\bar{X}\right)^2.
+\]
+
+
+
+\section{Question 2 and 3}
 \begin{statebox}{}{question-2}
     Try both cases in computer simulations and what is your observation?
-\end{statebox}
-
-
-
-\section{Question 3}
-\begin{statebox}{}{question-3}
     Prove that the $M-1$ case is better in the statistical sense.
 \end{statebox}
+
+运行程序如下，其中共进行65536次实验，每次生成服从正态分布$N(0, 1)$的1024组数据进行运算。无偏估计较好的实验次数为33347，超过实验总数的一半以上。且多次运行程序结果相差不大，无一例外地无偏估计所得结果较好，所以使用$M-1$作为分母在统计学上是更好的选择。
+\Cpp{Simulations}{code/4.cpp}
 
 
 

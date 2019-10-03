@@ -69,6 +69,15 @@
             listing file={#2},title=\texttt{#1},
             left=6mm,right=6mm,top=2mm,bottom=2mm,
             colback=violet!5!white,colframe=violet!75!black}
+        \newtcbinputlisting{\Cpp}[2]{%
+            listing options={language=C++,numbers=left,
+                numberstyle=\tiny\color{red!75!black},
+                basicstyle=\small,keywordstyle=\color{blue!85!black},
+                commentstyle=\color{white!75!black}\textit,breaklines},
+            listing only,breakable,
+            listing file={#2},title=\texttt{#1},
+            left=6mm,right=6mm,top=2mm,bottom=2mm,
+            colback=violet!5!white,colframe=violet!75!black}
         \tcbuselibrary{xparse}
             \DeclareTotalTCBox{\verbbox}{ O{orange} v !O{} }
                 {fontupper=\ttfamily,nobeforeafter,tcbox raise base,
