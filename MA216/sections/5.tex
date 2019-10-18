@@ -1,0 +1,33 @@
+% !Mode:: "TeX:UTF-8"
+% !TEX program  = xelatex
+\title{Assignment 5}
+
+
+
+\section{Assignment 1}
+We have $S(t)=S_0\exp\left((\mu-\frac{1}{2}\sigma^2)t+\sigma\sqrt{t}Z\right)$, where $Z\sim N(0,1)$.
+\subsection{Equation 1}
+\begin{align*}
+    \EE\中括号{S(t)} &= \EE\中括号{S_0\exp\小括号{\小括号{\mu-\frac{1}{2}\sigma^2}t+\sigma\sqrt{t}Z}} \\
+    &= S_0\exp\小括号{\小括号{\mu-\frac{1}{2}\sigma^2}t}\EE\中括号{\exp\小括号{\sigma\sqrt{t}Z}} \\
+    &= S_0\exp\小括号{\小括号{\mu-\frac{1}{2}\sigma^2}t}M_Z\小括号{\sigma\sqrt{t}} \\
+    &= S_0\exp\小括号{\小括号{\mu-\frac{1}{2}\sigma^2}t}\exp\小括号{\frac{1}{2}\sigma^2t} \\
+    &= S_0\exp(\mu t)
+\end{align*}
+
+
+\subsection{Equation 2}
+\begin{align*}
+    \EE\中括号{S(t)^2} &= \EE\中括号{S_0^2\exp\小括号{2\小括号{\mu-\frac{1}{2}\sigma^2}t+2\sigma\sqrt{t}Z}} \\
+    &= S_0^2\exp\小括号{\小括号{2\mu-\sigma^2}t}M_Z\小括号{2\sigma\sqrt{t}} \\
+    &= S_0^2\exp\小括号{\小括号{2\mu-\sigma^2}t}\exp\小括号{\frac{4}{2}\sigma^2t} \\
+    &= S_0^2\exp\小括号{\小括号{2\mu+\sigma^2}t}
+\end{align*}
+
+
+\subsection{Equation 3}
+\begin{align*}
+    \var\小括号{S(t)} &= \EE\中括号{S(t)^2} - \EE\中括号{S(t)}^2 \\
+    &= S_0^2\exp\小括号{\小括号{2\mu+\sigma^2}t} - S_0^2\exp(2\mu t) \\
+    &= S_0\exp\小括号{2\mu t}\小括号{\exp\小括号{\sigma^2t}-1}
+\end{align*}
