@@ -2,9 +2,69 @@
 % !TEX program  = xelatex
 \section{Prediction of LPPL  Model}
 We use the historical data of 000001.SS to predict the next critical time of bubbles ending, maybe crush or rebound following. The figure~\ref{F:LPPL-prediction} shows that the anti-bubbles tend to rebound on the 2019-03-20.
+\subsection{Example One}
+\begin{minipage}[b]{0.5\textwidth}
+\begin{itemize}
+    \item Data
+        \begin{itemize}
+            \item Symbol: 000001.SS
+            \item Start Date: 2018-10-1
+            \item End Date: 2019-10-1
+        \end{itemize}
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{itemize}
+    \item Results
+        \begin{itemize}
+            \item $m$: 1.00
+            \item $\omega$: 53.05
+            \item $t_c$: 1505.90
+            \item $A$: 8.78
+            \item $B$: 0.00
+            \item $C_1$: 4.60e-5
+            \item $C_2$: 3.04e-6
+        \end{itemize}
+\end{itemize}
+\end{minipage}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/2019-10-22-LPPL.png}
     \caption{Prediction of 000001.SS}
     \label{F:LPPL-prediction}
+\end{figure}
+
+
+\subsection{Example Two}
+\begin{minipage}[b]{0.5\textwidth}
+\begin{itemize}
+    \item Data
+        \begin{itemize}
+            \item Symbol: 000001.SS
+            \item Start Date: 2018-1-13
+            \item End Date: 2019-10-19
+        \end{itemize}
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{itemize}
+    \item Results
+        \begin{itemize}
+            \item $m$: 0.94
+            \item $\omega$: 4.63
+            \item $t_c$: 431.67
+            \item $A$: 7.99
+            \item $B$: 0.00
+            \item $C_1$: 0.00
+            \item $C_2$: 0.00
+        \end{itemize}
+\end{itemize}
+\end{minipage}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/2019-10-22-LPPL-2.png}
+    \caption{Prediction of 000001.SS}
+    \label{F:LPPL-prediction-2}
 \end{figure}
