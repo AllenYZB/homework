@@ -1,0 +1,16 @@
+% !Mode:: "TeX:UTF-8"
+% !TEX program  = xelatex
+\section{LPPL Model Implement}
+The formula in 1.4 of LPPL describes a nonlinear function of logarithm asset price about time, involving logarithm, periodic and super-exponential tendency with 7 unknown parameters. We chose the Levenberg-Marquardt algorithm (LM) to find out the global optimal solution about seven unknown parameters in this non-linear least squares problem.
+
+Firstly, we aim to minimize the distance between real price data with the estimated price from the model. We measured the $L_2$-norm distance as aim function for better curve fitting after comparing the consequence with $L_1$-norm.
+
+Secondly, we put several limits and bounds on parameters and fitted the data with MATLAB. The limits on parameters refer to the conclusive analysis of successful experiments by Professor Didier with his group.
+
+Thirdly, we tested different time intervals(Start Date to End Date) on three different stocks --- SSE Composite Index, NASDAQ, HK Seng Index. The number of iterations and the limit conditions on parameters, to some extent, did affect the consequences of critical time to get closer to the real historical crush points. The LPPL model is only valid in the super-exponential tendency.
+
+In our report, we used the  MATLAB to fit seven parameters especially the critical time, which can verify the precision of our model and algorithm.
+
+Finally, the figures of three stocks embody the precise prediction on the critical time of bubbles ending.
+
+Detailed results are in the Appendix.

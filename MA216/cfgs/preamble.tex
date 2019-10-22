@@ -40,16 +40,16 @@
     \usepackage{tikz}
         \usetikzlibrary{ducks,external}
     \usepackage{fancyhdr}
-        \fancyhead[L]{}
-        \fancyhead[C]{Iydon Liang, 11711217}
-        \fancyhead[R]{}
-        \fancyfoot[C]{%
-            \tikzset{external/export=false}%
-            \shuffleducks
-            \begin{tikzpicture}[scale=0.5]
-                \duck[signpost=\scalebox{0.6}{\thepage},\randomhead]
-            \end{tikzpicture}
-        }
+        % \fancyhead[L]{}
+        % \fancyhead[C]{Iydon Liang, 11711217}
+        % \fancyhead[R]{}
+        % \fancyfoot[C]{%
+        %     \tikzset{external/export=false}%
+        %     \shuffleducks
+        %     \begin{tikzpicture}[scale=0.5]
+        %         \duck[signpost=\scalebox{0.6}{\thepage},\randomhead]
+        %     \end{tikzpicture}
+        % }
         \renewcommand{\headrulewidth}{0.4pt}
         \pagestyle{fancy}
 
@@ -67,6 +67,15 @@
             colback=violet!5!white,colframe=violet!75!black}
         \newtcbinputlisting{\Python}[2]{%
             listing options={language=Python,numbers=left,
+                numberstyle=\tiny\color{red!75!black},
+                basicstyle=\small,keywordstyle=\color{blue!85!black},
+                commentstyle=\color{white!75!black}\textit,breaklines},
+            listing only,breakable,
+            listing file={#2},title=\texttt{#1},
+            left=6mm,right=6mm,top=2mm,bottom=2mm,
+            colback=violet!5!white,colframe=violet!75!black}
+        \newtcbinputlisting{\MATLAB}[2]{%
+            listing options={language=MATLAB,numbers=left,
                 numberstyle=\tiny\color{red!75!black},
                 basicstyle=\small,keywordstyle=\color{blue!85!black},
                 commentstyle=\color{white!75!black}\textit,breaklines},
@@ -111,7 +120,7 @@
     % reading font
     \usepackage{ebgaramond}
     % Chinese support only
-    \usepackage{ctex}
+    \usepackage[scheme=plain]{ctex}
     % \usepackage[scheme=plain]{ctex}
     % lipsum
     \usepackage{lipsum}
