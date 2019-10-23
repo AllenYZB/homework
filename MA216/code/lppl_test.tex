@@ -1,0 +1,107 @@
+\hypertarget{lppl-module}{%
+\section{LPPL Module}\label{lppl-module}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ LPPL}
+
+\BuiltInTok{help}\NormalTok{(LPPL.Model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Help on class Model in module LPPL:
+
+class Model(builtins.object)
+ |  Methods defined here:
+ |  
+ |  __init__(self, source, code, start, end, tt_ratio, eo_ratio)
+ |      Argument
+ |      =======
+ |              source: Callable, `tushare.get_hist_data` or                            `pandas_datareader.data.get_data_yahoo`
+ |              code: str
+ |              start: str
+ |              end: str
+ |              tt_ratio: float, ratio of train and test data
+ |              et_ratio: float, ratio of extended and original time
+ |  
+ |  __repr__(self)
+ |      Return `repr(self)`.
+ |  
+ |  plot(self, *args, **kwargs)
+ |      Plot self.
+ |  
+ |  plot_origin(self, file_name='')
+ |      Plot original figure.
+ |  
+ |  plot_predict(self, file_name='')
+ |      Plot the prediction.
+ |  
+ |  predict(self, t)
+ |      Prediction.
+ |      
+ |      Argument
+ |      =======
+ |              t: float or numpy.array
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+
+\end{verbatim}
+
+\hypertarget{different-data-sources}{%
+\subsection{Different Data Sources}\label{different-data-sources}}
+
+\hypertarget{pandas_datareaderdataget_data_yahoo}{%
+\subsubsection{\texorpdfstring{\texttt{pandas\_datareader.data.get\_data\_yahoo}}{pandas\_datareader.data.get\_data\_yahoo}}\label{pandas_datareaderdataget_data_yahoo}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{from}\NormalTok{ pandas\_datareader.data }\ImportTok{import}\NormalTok{ get\_data\_yahoo}
+
+\NormalTok{code }\OperatorTok{=} \StringTok{\textquotesingle{}000001.SS\textquotesingle{}}
+\NormalTok{start, end }\OperatorTok{=} \StringTok{\textquotesingle{}2017{-}4{-}1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}2018{-}4{-}1\textquotesingle{}}
+\NormalTok{tt\_ratio }\OperatorTok{=} \FloatTok{0.5}
+\NormalTok{eo\_ratio }\OperatorTok{=} \FloatTok{1.2}
+
+\NormalTok{m1 }\OperatorTok{=}\NormalTok{ LPPL.Model(get\_data\_yahoo, code, start, end, tt\_ratio, eo\_ratio)}
+\NormalTok{m1.plot()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1216cf99ce60f340d488c6eaaf44cee6e75c6be3.png}
+
+\includegraphics{843c1bf01e4c541f9f66f7a8acef1e8af88bc3a6.png}
+
+\hypertarget{tushareget_hist_data}{%
+\subsubsection{\texorpdfstring{\texttt{tushare.get\_hist\_data}}{tushare.get\_hist\_data}}\label{tushareget_hist_data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{from}\NormalTok{ tushare }\ImportTok{import}\NormalTok{ get\_hist\_data}
+
+\NormalTok{code }\OperatorTok{=} \StringTok{\textquotesingle{}600848\textquotesingle{}}
+\NormalTok{start, end }\OperatorTok{=} \StringTok{\textquotesingle{}2017{-}4{-}1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}2018{-}4{-}1\textquotesingle{}}
+\NormalTok{tt\_ratio }\OperatorTok{=} \FloatTok{0.5}
+\NormalTok{eo\_ratio }\OperatorTok{=} \FloatTok{1.2}
+
+\NormalTok{m2 }\OperatorTok{=}\NormalTok{ LPPL.Model(get\_hist\_data, code, start, end, tt\_ratio, eo\_ratio)}
+\NormalTok{m2.plot()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{1796a3b29c2587ce45432662697b9097fb77a20b.png}
+
+\includegraphics{1df43c6d1f7a8d2666f954d47bda0b45048c7cb1.png}
+
+\hypertarget{others}{%
+\subsubsection{Others}\label{others}}
+
+Require callable function with \texttt{code}, \texttt{start}, and
+\texttt{end} arguments.
