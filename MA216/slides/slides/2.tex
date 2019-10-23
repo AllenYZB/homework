@@ -1,0 +1,39 @@
+\section{LPPL模型}
+\begin{frame}[t]{LPPL模型的具体函数形式}
+    该模型拟合的泡沫呈现以下状态：市场价格为对数周期震荡且呈现幂律法则加速，系统越靠近临界点会出现一连串的频率逐渐增加的震荡循环。
+
+    LPPL模型的具体函数形式如下：
+    \begin{align*}
+        \ln\left[p(t)\right] &= A + B(t_c-t)^m + C(t_c-t)^m\cos\left[\omega\ln(t_c-t)+\varphi\right] \\
+                             &= A + B(t_c-t)^m + C_1(t_c-t)^m\cos\left[\omega\ln(t_c-t)\right] \\
+                             &\hspace{8em} + C_2(t_c-t)^m\sin\left[\omega\ln(t_c-t)\right]
+    \end{align*}
+\end{frame}
+
+\begin{frame}[t]{符号解释}
+    \begin{table}[H]
+    \centering
+        \begin{tabular}{@{}ccl@{}}
+        \toprule
+        符号        & 约束条件            & 解释                                          \\ \midrule
+        $p(t)$    & -               & 在$t$时刻的资产价格或资产价格指数；                         \\
+        $t_c$     & -               & 临界时间，即泡沫破裂的时间；                              \\
+        $t$       & $<t_c$          & 是泡沫破灭前的任一时刻；                                \\
+        $A$       & $>0$            & 泡沫持续到临界时间$t_c$时刻$\ln[p(t_c)]$的值；            \\
+        $C$       & -               & 围绕指数增长的波动振幅的比例因子；                           \\
+        $B$       & $<0$            & \tabincell{l}{为$C$接近0时，$\ln[p(t_c)]$在崩盘时刻$t_c$之\\前的单位时间增长量；} \\
+        $m$       & $=0.33\pm 0.18$ & 幂率增长的指数；                                    \\
+        $\omega$  & $=6.26\pm 1.56$ & 泡沫期间波动的频率；                                  \\
+        $\varphi$ & $\in[0,2\pi]$   & 相位参数。                                       \\ \bottomrule
+        \end{tabular}
+        \caption{符号说明}\label{T:symbols}
+    \end{table}
+\end{frame}
+
+\begin{frame}[t]{LPPL模型的假设条件}
+    \begin{enumerate}
+        \item 投资者是多种多样的，并且不同的投资者的投资策略、对市场信息的判断不一样，同时他们的交易频率和投资头寸也不一样。\\[0.5cm]
+        \item 投资者处在一个会互相影响的网络中，投资者的决策会受其他投资者的影响。\\[0.5cm]
+        \item 金融崩溃出现在不同的投资者纷纷跟风做同样决策之后。随着市场的发展完善，由于市场反馈机制良好，异质投资者之间会出现自组织的合作，从而导致模仿行为。随着市场协同效应和一致性的加深，泡沫继续扩大。当达到临界时间时，市场上所有的投资者同时采取统一的投资策略。
+    \end{enumerate}
+\end{frame}
