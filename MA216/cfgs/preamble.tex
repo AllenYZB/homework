@@ -41,7 +41,7 @@
         \usetikzlibrary{ducks,external}
     \usepackage{fancyhdr}
         % \fancyhead[L]{}
-        % \fancyhead[C]{Iydon Liang, 11711217}
+        \fancyhead[C]{Iydon Liang, 11711217}
         % \fancyhead[R]{}
         % \fancyfoot[C]{%
         %     \tikzset{external/export=false}%
@@ -130,13 +130,5 @@
     \usepackage{gbt7714}
     % show label keys
     % \usepackage{showkeys}
-    % change notes
-    \let\comment\relax
-    \usepackage[commentmarkup=todo,
-        todonotes={textsize=tiny}]{changes}
-        \definechangesauthor[color=violet!30]{Iydon}
-        \newcommand{\增加}[2]{\added[id=Iydon, comment={#1}]{#2}}
-        \newcommand{\删除}[2]{\deleted[id=Iydon, comment={#1}]{#2}}
-        \newcommand{\替换}[3]{\replaced[id=Iydon, comment={#1}]{#2}{#3}}
-        \newcommand{\高亮}[2]{\highlight[id=Iydon, comment={#1}]{#2}}
-        \newcommand{\注释}[1]{\comment[id=Iydon]{#1}}
+    % MATLAB
+    \usepackage{matlab-prettifier}
