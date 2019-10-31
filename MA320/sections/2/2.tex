@@ -1,5 +1,7 @@
 % !Mode:: "TeX:UTF-8"
 % !TEX program  = xelatex
+In this section, we will give a proper and accurate definition of geometric progression, from which we will derive the summation formula for the geometric progression in both finite and infinite cases.
+
 \subsection{Definition}
 \begin{defnbox}{Geometric Progression\cite{Weisstein2019gp}}{gp}
     A geometric sequence is a sequence $\{a_k\}, k=0, 1, \ldots$, such that each term is given by a multiple $r$ of the previous one. Another equivalent definition is that a sequence is geometric iff\footnote{if and only if} it has a zero series bias. If the multiplier is $r$, then the $k$th term is given by
@@ -15,7 +17,15 @@
 
 Accordingly, we can define the arithmetic progression in advance to facilitate future introductions.
 \begin{defnbox}{Arithmetic Progression\cite{Weisstein2019ap}}{ap}
-    An arithmetic progression, also known as an arithmetic sequence, is a sequence of $n$ numbers $\{a_0+kd\}^{n-1}_{k=0}$ such that the differences between successive terms is a constant $d$.
+    An arithmetic progression, also known as an arithmetic sequence, is a sequence of $n$ numbers $\{a_0+kd\}^{n-1}_{k=0}$ such that the differences between successive terms is a constant $d$. That is,
+    \[
+        a_k = a_{k-1}+d = a_{k-2}+d = \cdots = a_0+kd.
+    \]
+
+    Taking $a_0=0$ gives the simple special case
+    \[
+        a_k = kd.
+    \]
 \end{defnbox}
 
 
@@ -38,7 +48,7 @@ Subtract equation~\eqref{E:gp-2} from equation~\eqref{E:gp-1}, we have,
 
 Therefore, we need a classification discussion, if the $r$ equals to 1, both sides of the equation cannot divide $1-r$ simultaneously, but we can derivate the formula from equation~\eqref{E:gp-1}, $S_n=na_1$.
 
-In summary, we derivate the summation formula for the geometric progression,
+Above all, we derivate the summation formula for the geometric progression,
 \begin{equation}\label{E:gp-4}
     S_n = \begin{cases}
               na_1 & \text{if } r=1, \\
@@ -51,10 +61,23 @@ Moreover, if we use the form of the limit, we can simplify the formula,
     S_n = \lim_{q\to r} \frac{a_1(1-q^n)}{1-q}.
 \end{equation}
 
-Next we consider what happens when $n\to\infty$. $1-q$ is finite, the convergence of $S_n$ is equivalent to convergence of $\lim_{q\to r}1-q^n$. Therefore,  $S_n$ convergence only and only if $|r|<1$.
+Next we consider what happens when $n\to\infty$. $1-q$ is finite, the convergence of $S_n$ is equivalent to convergence of $\lim_{q\to r}1-q^n$. Therefore,  $S$ convergence if and only if $|r|<1$.
 \begin{equation}\label{E:gp-6}
     S = \lim_{n\to\infty} S_n = \lim_{\substack{n\to\infty \\ q\to r}} \frac{a_1(1-q^n)}{1-q} = \lim_{n\to\infty}\frac{a_1(1-r^n)}{1-r} = \frac{a_1}{1-r}.
 \end{equation}
+
+In summary, we get the summation formula for the geometric progression,
+\[
+    S_n = \begin{cases}
+              na_1 & \text{if } r=1, \\
+              \frac{a_1(1-r^n)}{1-r} & \text{if } r\neq 1.
+          \end{cases}
+\]
+and $S$ convergence if and only if $|r|<1$,
+\[
+    S = \lim_{n\to\infty} = \frac{a_1}{1-r}.
+\]
+
 
 \subsubsection{Summation Formula For the Arithmetic progression}
 The summation formula for the arithmetic progression is slightly different from the geometric progression, and it relates back to a famous mathematician, Gauss. The main idea of the formula comes from
@@ -62,11 +85,11 @@ The summation formula for the arithmetic progression is slightly different from 
     1+2+\cdots+n = \frac{n(n+1)}{2}.
 \]
 
-The proof part is left to readers as a practice question, we just provide clues,
+The proof part is left to readers as a practice question, we just provide clues below,
 \begin{equation}\label{E:ap-1}
     \begin{aligned}
-        S_n &= \sum_{k=1}^n a_k \\
-            &= \sum_{k=1}^n (a_1+(k-1)d) \\
-            &= \sum_{k=1}^n a_1 + d\sum_{k=1}^n (k-1).
+        S_{n+1} &= \sum_{k=0}^n a_k \\
+            &= \sum_{k=0}^n (a_0+kd) \\
+            &= \sum_{k=0}^n a_0 + d\sum_{k=0}^n k.
     \end{aligned}
 \end{equation}

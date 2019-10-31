@@ -1,15 +1,21 @@
 % !Mode:: "TeX:UTF-8"
 % !TEX program  = xelatex
 \subsection{Computer Field}
-In the field of computers, the summation formula for the geometric progression is quite important for reducing the computing complexity. For example, we can reduce the summation complexity of the arithmetic progression from $O(n)$ to $O(1)$, and the geometric progression from $O(n^2)$ to $O(1)$, which maximizes memory utilization. You may refer to appendix~\ref{A:python-1} for more information. Here comes an example:
+In the field of computers, the summation formula for the geometric progression is quite important for reducing the computing complexity. For example, we can reduce the summation complexity of the arithmetic progression from $O(n)$ to $O(1)$, and the geometric progression from $O(n^2)$ to $O(n)$, which maximizes memory utilization. You may refer to appendix~\ref{A:python-1} for more information. Here comes an example written in \texttt{IPython}\cite{PER-GRA:2007}:
 \begin{pylist}{Comparison}
+base = 2
+number = 1024
+
 %%timeit
 s = 0
-for i in range(1024):
-    s += 2**i
+for i in range(number):
+    s += base**i
 
 %%timeit
-s = 2**1024 - 1
+s = sum(base**i for i in range(number))
+
+%%timeit
+s = base**number - 1
 \end{pylist}
 
-The running time of the first block is $656 \mu s ± 10.4\mu s$ per loop, and the second block is $765 ns ± 9.5 ns$ per loop. Obviously, the formula works efficiently.
+The running time of the first block is $656 \mu s ± 10.4\mu s$ per loop, the second block is $628 \mu s ± 15.8 \mu s$, and the third block is $765 ns ± 9.5 ns$ per loop. Obviously, the formula works efficiently.

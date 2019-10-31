@@ -13,10 +13,12 @@ There is a story about geometric progression called \emph{The rice and the chess
 Let us just calculate how many grains of rice did the king need to be a man of his word,
 \begin{align*}
      & 1 + 2 + 2^2 + \cdots + 2^{63} \\
-    =& 2^0 + 2^1 + 2^2 + \cdots + 2^{63} = \sum_{n=0}^{63} 2^n \\
-    =& 18,446,744,073,709,551,615.
+    =& 2^0 + 2^1 + 2^2 + \cdots + 2^{63} \\
+    =& \sum_{n=0}^{63} 2^n
 \end{align*}
 
-That is to say, the amount of the grains the king needs is equal to about 210 billion tons and is allegedly sufficient to cover the whole territory of India with a meter thick layer of rice\footnote{A grain of rice is approximately 0.2 inches long. Converting 0.2 inches to feet.}.
+Without calculator, it will be a boring process to calculate the result. Fortunately, we live in the age of computers, with the help of \texttt{Python}, we can easily get the result through a for-loop: $18,446,744,073,709,551,615$.
 
-In fact, the formula for calculating rice is equivalent to the summation of the first $n$ terms in a geometric progression. Popularly speaking, a geometric progression is a sequence of numbers where each term after the first is found by multiplying the previous one by a fixed, non-zero number, we will give a mathematical definition and derivation process in the next section.
+That is to say, the amount of grains the king needs is equal to about 210 billion tons and is allegedly sufficient to cover the whole territory of India with a meter thick layer of rice\footnote{A grain of rice is approximately 0.2 inches long. Converting 0.2 inches to feet.}.
+
+In fact, we can easily get the result through the summation formula for geometric progression, and calculating rice is equivalent to the summation of the first $n$ terms in a geometric progression. Popularly speaking, a geometric progression is a sequence of numbers where each term after the first is found by multiplying the previous one by a fixed, non-zero number, we will give a mathematical definition and derivation process in the next section.
